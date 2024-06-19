@@ -26,3 +26,17 @@ The methods for generating the dataset for the NRNet model, the specific working
 # Getting started
 
 ## Setup
+Python dependencies:
+
+- pytorch
+- opencv
+- sklearn
+- skimage
+
+We provide a `requirements.txt` including all of the above dependencies. To create a new conda environment and install the dependencies, run:
+
+    ```bash
+    conda create --name nrnet python=3.9
+    conda activate nrnet
+    pip install -r requirements.txt
+    ```
