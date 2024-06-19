@@ -1,7 +1,7 @@
 # Table of Contents
 
 - [General info](#General-info)
-- [Methods-pipeline](#Methods--pipline)
+- [Methods-pipeline](#Methods-pipline)
 - [Contents](#Contents)
 - [Getting started](#Getting-started)
 
@@ -17,7 +17,7 @@ The mainly capability of the code is to accurately correct the rotational distor
 
 3. **Nonuniform Rotational Distortion Correction Network** (NCNet)
 
-# Methods-pipeline
+# Methods pipeline
 
 The methods for generating the dataset for the NRNet model, the specific working principles and the evaluation of the model's image restoration capabilities can all be found in the paper. The dataset generation method and the working principles of the NRNet model are illustrated in the diagram below.
 
