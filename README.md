@@ -3,7 +3,7 @@
 - [General info](#Generalinfo)
 - [Methods-pipeline](#Methods-pipline)
 - [Contents](#Contents)
-- [Getting started](#Gettingstarted)
+- [Getting started](#Getting-started)
 
 # General info
 
