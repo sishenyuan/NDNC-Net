@@ -2,6 +2,8 @@
 
 - [General info](#Generalinfo)
 - [Methods-pipeline](#Methods-pipline)
+- [Contents](#Contents)
+- [Getting started](#Gettingstarted)
 
 # General info
 
