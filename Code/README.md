@@ -15,7 +15,9 @@ We provide a `requirements.txt` including all of the above dependencies. To crea
     pip install -r requirements.txt
     ```
 
-Then, obtain the correction net checkpoint from [Google Drive](https://drive.google.com/file/d/1MupEM5652VPwYeARrCFa971LdnXfhOCX), then create a new directory named `weights` and place the checkpoint within.
+## Initialization
+
+Obtain the correction net checkpoint from [Google Drive](https://drive.google.com/file/d/1MupEM5652VPwYeARrCFa971LdnXfhOCX), and create a new directory named `weights` and place the checkpoint within.
 
 ## Data Preparation
 
