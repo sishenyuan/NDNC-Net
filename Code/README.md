@@ -1,21 +1,32 @@
+# Setup
 
-## Usage
+Python dependencies:
 
-### Requirements
+- pytorch
+- opencv
+- sklearn
+- skimage
 
-* pytorch
-* opencv
-* sklearn
-* skimage
-* tqdm
+We provide a `requirements.txt` including all of the above dependencies. To create a new conda environment and install the dependencies, run:
 
+    ```bash
+    conda create --name nrnet python=3.9
+    conda activate nrnet
+    pip install -r requirements.txt
+    ```
 
-### Initialization
+Then, obtain the correction net checkpoint from [Google Drive](https://drive.google.com/file/d/1MupEM5652VPwYeARrCFa971LdnXfhOCX), then create a new directory named `weights` and place the checkpoint within.
 
-Down the checkpoint of correction net from [Checkpoints](https://drive.google.com/file/d/1MupEM5652VPwYeARrCFa971LdnXfhOCX/view?usp=sharing), create a new folder named ```MegOCT/weights/``` and place the checkpoint in it.
+## Data Preparation
 
-### Data Preparation
-We have prepared some demonstration data and you can down them from. Then just place the data in this folder.
+You can use our provided data to test the model.
 
-## Start
-Just run ```python oct_restore.py``` to start inferences. By default, the outputs are saved in ```./outputs```.
+## Initiation
+
+Run
+
+    ```bash
+    python oct_restore.py
+    ```
+
+to start inference. The results will be saved in the `./outputs`.
