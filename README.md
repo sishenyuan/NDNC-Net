@@ -1,7 +1,7 @@
 # Table of Contents
 
-- [General info](#Generalinfo)
-- [Methods-pipeline](#Methods-pipline)
+- [General info](#General-info)
+- [Methods-pipeline](#Methodspipline)
 - [Contents](#Contents)
 - [Getting started](#Getting-started)
 
