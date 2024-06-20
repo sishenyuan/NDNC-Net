@@ -25,6 +25,10 @@ The methods for generating the dataset for the NRNet model, the specific working
 
 # Contents
 
+## Oct Dataset
+
+This folder includes the python and matlab files that can generate the synthetic dataset with accurate pairs of resampling distance variation vector (RDVV) and distorted images for further NRNet training. The specific setup for this part are shown in the README.md file in the oct-dataset folder.
+
 # Getting started
 
 ## Setup
