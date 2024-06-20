@@ -1,11 +1,11 @@
 # Table of Contents
 
-- [General info](#General-info)
-- [Methods pipeline](#Methods-pipeline)
-- [Contents](#Contents)
-- [Getting started](#Getting-started)
+- [General info](#general-info)
+- [Methods pipeline](#methods-pipeline)
+- [Contents](#contents)
+- [Getting started](#getting-started)
 
-# General info
+# General Info
 
 This Git repository contains python codes for implementing the NDNC-Net model. The NDNC-Net is a deep-learning approach which integrates the rotation dynamics model of the rotatable diametrically magnetized cylinder permanent magnet (RDPM) and is trained using synthetic data.
 
@@ -15,7 +15,7 @@ The mainly capability of the code is to accurately correct the rotational distor
 
 2. **Nonuniform Rotational Distortion Correction Network** (NCNet)
 
-# Methods pipeline
+# Methods Pipeline
 
 The methods for generating the dataset for the NDNC-Net model, the specific working principles and the evaluation of the model's image restoration capabilities can all be found in the paper. The dataset generation method and the working principles of the NDNC-Net model are illustrated in the diagram below.
 
@@ -27,9 +27,10 @@ The methods for generating the dataset for the NDNC-Net model, the specific work
 
 This folder includes the python and matlab files that can generate the synthetic dataset with accurate pairs of resampling distance variation vector (RDVV) and distorted images for further NDNC-Net training. The specific setup for this part are shown in the README.md file in the oct-dataset folder.
 
-# Getting started
+# Getting Started
 
 ## Setup
+
 Python dependencies:
 
 - pytorch
@@ -40,17 +41,30 @@ Python dependencies:
 We provide a `requirements.txt` including all of the above dependencies. To create a new conda environment and install the dependencies, run:
 
 ```bash
-conda create --name nrnet python=3.9
-conda activate nrnet
+conda create --name ndnc-net python=3.9
+conda activate ndnc-net
 pip install -r requirements.txt
 ```
+
 ## Initialization
 
 Obtain the correction net checkpoint from [Google Drive](https://drive.google.com/file/d/1MupEM5652VPwYeARrCFa971LdnXfhOCX), and create a new directory named `weights` and place the checkpoint within.
 
 ## Data Preparation
 
-You can use our provided data to test the model.
+Dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1H5xdALyERpqmABYI6VVqiCFCwWWD_ndI). You need to rename the folder to `images`(by default) and place it in the root directory.
+
+To create the dynamics curves, run the following command:
+
+```bash
+python create_random.py --num_datasets 100
+```
+
+To create distorted images, run the following command:
+
+```bash
+python create_distorted.py --num_samples 100
+```
 
 ## Initiation
 
