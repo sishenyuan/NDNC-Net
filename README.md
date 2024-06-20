@@ -7,7 +7,7 @@
 
 # General info
 
-This Git repository contains python codes for implementing the NRNet model. The NDNC-Net is a deep-learning approach which integrates the rotation dynamics model of the rotatable diametrically magnetized cylinder permanent magnet (RDPM) and is trained using synthetic data.
+This Git repository contains python codes for implementing the NDNC-Net model. The NDNC-Net is a deep-learning approach which integrates the rotation dynamics model of the rotatable diametrically magnetized cylinder permanent magnet (RDPM) and is trained using synthetic data.
 
 The mainly capability of the code is to accurately correct the rotational distortions in Optical Coherence Tomography (OCT) images which were sampled in the rat esophagus and the mouse colon. The current version includes the following models:
 
@@ -17,7 +17,7 @@ The mainly capability of the code is to accurately correct the rotational distor
 
 # Methods pipeline
 
-The methods for generating the dataset for the NRNet model, the specific working principles and the evaluation of the model's image restoration capabilities can all be found in the paper. The dataset generation method and the working principles of the NRNet model are illustrated in the diagram below.
+The methods for generating the dataset for the NDNC-Net model, the specific working principles and the evaluation of the model's image restoration capabilities can all be found in the paper. The dataset generation method and the working principles of the NDNC-Net model are illustrated in the diagram below.
 
 ![image](shematic.png)
 
@@ -25,7 +25,7 @@ The methods for generating the dataset for the NRNet model, the specific working
 
 ## Oct Dataset
 
-This folder includes the python and matlab files that can generate the synthetic dataset with accurate pairs of resampling distance variation vector (RDVV) and distorted images for further NRNet training. The specific setup for this part are shown in the README.md file in the oct-dataset folder.
+This folder includes the python and matlab files that can generate the synthetic dataset with accurate pairs of resampling distance variation vector (RDVV) and distorted images for further NDNC-Net training. The specific setup for this part are shown in the README.md file in the oct-dataset folder.
 
 # Getting started
 
