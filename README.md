@@ -11,11 +11,9 @@ This Git repository contains python codes for implementing the NRNet model. The 
 
 The mainly capability of the code is to accurately correct the rotational distortions in Optical Coherence Tomography (OCT) images which were sampled in the rat esophagus and the mouse colon. The current version includes the following models:
 
-1. **Struct Detection Network** (SDNet)
+1. **Nonuniform Rotational Distortion Detection Network** (NDNet)
 
-2. **Nonuniform Rotational Distortion Detection Network** (NDNet)
-
-3. **Nonuniform Rotational Distortion Correction Network** (NCNet)
+2. **Nonuniform Rotational Distortion Correction Network** (NCNet)
 
 # Methods pipeline
 
