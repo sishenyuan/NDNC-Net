@@ -17,7 +17,7 @@ The mainly capability of the code is to accurately correct the rotational distor
 
 # Methods Pipeline
 
-The methods for generating the dataset for the NDNC-Net model, the specific working principles and the evaluation of the model's image restoration capabilities can all be found in the paper. The dataset generation method and the working principles of the NDNC-Net model are illustrated in the diagram below.
+The methods for generating the dataset for the NDNC-Net model, the specific working principles, and the evaluation of the model's image restoration capabilities are all detailed in the paper. The diagram below illustrates the dataset generation method and the working principles of the NDNC-Net model.
 
 ![image](shematic.png)
 
@@ -64,7 +64,7 @@ Obtain the correction net checkpoint from [Google Drive](https://drive.google.co
 
 ## Prepare the Dataset
 
-Dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1H5xdALyERpqmABYI6VVqiCFCwWWD_ndI). You need to rename the folder to `images`(by default) and place it in the root directory.
+The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1H5xdALyERpqmABYI6VVqiCFCwWWD_ndI). You need to rename the folder to `images`(by default) and place it in the root directory.
 
 To create the dynamics curves, run the following command:
 
@@ -107,3 +107,9 @@ python oct_restore.py
 ```
 
 to start inference. Results will be saved in the `./outputs`.
+
+## Demonstration
+
+A synthetic dataset for testing is available for download on [Google Drive](https://drive.google.com/drive/folders/1VD00LOpnTB4Pj4NNuMb9lZRDWIK5FiY2), which includes original distortion-free samples and the corresponding synthetic distorted images. This dataset can be used to compare the OCT images after correction with the original distortion-free images.
+
+
