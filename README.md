@@ -25,19 +25,19 @@ The methods for generating the dataset for the NDNC-Net model, the specific work
 
 ## Resample
 
-This folder includes the python scripts that can generate the synthetic dataset with accurate pairs of resampling distance variation vector (RDVV) and distorted images for further NDNC-Net training.
+This folder includes the Python scripts that can generate the synthetic dataset with accurate pairs of resampling distance variation vector (RDVV) and distorted images for further NDNC-Net training.
 
 ## NDNet
 
-This folder includes the python scripts that can train the NDNet model.
+This folder includes the Python scripts that can train the NDNet model.
 
 ## NCNet
 
-`ncnet.py` is the python script for inference of the NCNet model.
+`ncnet.py` is the Python script for inference of the NCNet model.
 
 ## OCT Restore
 
-`oct_restore.py` is the python script that can restore the distorted images using the trained NDNet and NCNet models.
+`oct_restore.py` is the Python script that can restore distorted images using the trained NDNet and NCNet models.
 
 # Getting Started
 
@@ -60,7 +60,7 @@ pip install -r requirements.txt
 
 ## Initialize
 
-Obtain the correction net checkpoint from [Google Drive](https://drive.google.com/file/d/1MupEM5652VPwYeARrCFa971LdnXfhOCX), and create a new directory named `weights` and place the checkpoint within.
+Obtain the NCNet checkpoint from [Google Drive](https://drive.google.com/file/d/1MupEM5652VPwYeARrCFa971LdnXfhOCX), and create a new directory named `weights` and place the checkpoint within.
 
 ## Prepare the Dataset
 
