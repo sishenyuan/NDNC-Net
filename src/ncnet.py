@@ -43,7 +43,7 @@ from torch.utils.data import Dataset, DataLoader
 #     new_image = cropped_images[i]
 #     new_image.save(path)
 
-# 定义图像数据集类
+# Define dataset (Image-Vector with the same weight)
 class ImageVectorDataset(Dataset):
     def __init__(self, image_dir, transform=None):
         self.image_dir = image_dir
@@ -62,7 +62,7 @@ class ImageVectorDataset(Dataset):
 
         return image, img_name
 
-# 定义简单的 Vision Transformer 模型
+# Define Vision Transformer Model
 class VisionTransformer(nn.Module):
     def __init__(self, image_size, patch_size, num_classes, dim):
         super(VisionTransformer, self).__init__()
