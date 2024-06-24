@@ -60,7 +60,7 @@ pip install -r requirements.txt
 
 ## Initialize
 
-Obtain the NCNet checkpoint from [Google Drive](https://drive.google.com/file/d/1MupEM5652VPwYeARrCFa971LdnXfhOCX), and create a new directory named `weights` and place the checkpoint within.
+Obtain the NCNet checkpoint from [Google Drive](https://drive.google.com/drive/folders/1aqOWWzmYfPdbhB79UiXK7owjOMSUCd4Z), and create a new directory named `weights` and place the checkpoint within.
 
 ## Prepare the Dataset
 
