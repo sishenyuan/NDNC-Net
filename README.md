@@ -17,7 +17,7 @@ The current version includes the following models:
 
 # Methods Pipeline
 
-The methods for generating the dataset for the NDNC-Net model, the specific working principles, and the evaluation of the model's image restoration capabilities are all detailed in the paper. The diagram below illustrates the dataset generation method and the working principles of the NDNC-Net model.
+The methods for generating the dataset for the NDNC-Net model, the specific working principles, and the evaluation of the model's image restoration capabilities are comprehensively detailed in the accompanying paper. The diagram below illustrates the dataset generation method and the inverse resampling process used for NURD correction.
 
 ![image](shematic.png)
 
