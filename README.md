@@ -19,7 +19,7 @@ The current version includes the following models:
 
 The methods for generating the dataset for the NDNC-Net model, the specific working principles, and the evaluation of the model's image restoration capabilities are comprehensively detailed in the accompanying paper. The diagram below illustrates the dataset generation method and the inverse resampling process used for NURD correction.
 
-![image](shematic.png)
+![image](shematic1.png)
 
 # Contents
 
