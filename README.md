@@ -7,9 +7,9 @@
 
 # General Info
 
-This Git repository contains python codes for implementing the NDNC-Net model. The NDNC-Net is a deep-learning approach which integrates the rotation dynamics model of the rotatable diametrically magnetized cylinder permanent magnet (RDPM) and is trained using synthetic data.
+Welcome to the official repository for NDNC-Net, a deep-learning approach designed to correct rotational distortions in Optical Coherence Tomography (OCT) images. NDNC-Net integrates the rotation dynamics model of the Rotatable Diametrically Magnetized Cylinder Permanent Magnet (RDPM) and is trained using synthetic data.
 
-The mainly capability of the code is to accurately correct the rotational distortions in Optical Coherence Tomography (OCT) images which were sampled in the rat esophagus and the mouse colon. The current version includes the following models:
+The current version includes the following models:
 
 1. **Nonuniform Rotational Distortion Detection Network** (NDNet)
 
