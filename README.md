@@ -37,7 +37,7 @@ This folder includes the Python scripts that can train the NDNet model.
 
 ## OCT Restore
 
-`oct_restore.py` is the Python script that can restore distorted images using the trained NDNet and NCNet models.
+`oct_restore.py` is the Python script that can correct distorted images using the trained NDNet and NCNet models.
 
 # Getting Started
 
