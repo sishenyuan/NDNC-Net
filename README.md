@@ -62,9 +62,9 @@ pip install -r requirements.txt
 
 Obtain the NCNet checkpoint from [Google Drive](https://drive.google.com/drive/folders/1aqOWWzmYfPdbhB79UiXK7owjOMSUCd4Z), and create a new directory named `weights` and place the checkpoint within.
 
-## Prepare the Dataset
+## Prepare the Synthetic Dataset
 
-The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1H5xdALyERpqmABYI6VVqiCFCwWWD_ndI). You need to rename the folder to `images`(by default) and place it in the root directory.
+The dataset can be downloaded from [Google Drive](https://drive.google.com/drive/folders/1O_ezlXHpvBgL7A7B-ScTpyWji-0HtrRE). You need to rename the folder to `images`(by default) and place it in the root directory.
 
 To create the dynamics curves, run the following command:
 
