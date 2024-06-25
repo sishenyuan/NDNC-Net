@@ -13,7 +13,7 @@ from PIL import Image, ImageOps
 from torchvision import transforms
 
 from yolo.detect import detect_nurd
-from ncnet import ImageVectorDataset, VisionTransformer
+from net3inference import ImageVectorDataset, VisionTransformer
 from torch.utils.data import DataLoader
 import time
 import argparse
@@ -99,7 +99,7 @@ def fill_zero_columns(image):
     image = cv2.resize(image, (widthnew, height))
     image = np.transpose(image, (2, 0, 1))
     image = image.astype(np.uint8)
-    return image
+    return image, widthnew
 
 def restore_nurd(distort_image_path, dynamics_data_path, index):
     '''
@@ -142,7 +142,7 @@ def restore_nurd(distort_image_path, dynamics_data_path, index):
         restored_img[:,forward_flow[0,0,i]] = distorted_img[:,i]
     
     restored_img = np.transpose(restored_img, (2, 0, 1))
-    restored_img = fill_zero_columns(restored_img)
+    restored_img, add_width = fill_zero_columns(restored_img)
     restored_img = np.transpose(restored_img, (1, 2, 0))
 
     # plt.figure()
@@ -150,7 +150,7 @@ def restore_nurd(distort_image_path, dynamics_data_path, index):
     # plt.plot(xx, forward_flow[0,0,:])
     # plt.savefig(os.path.join("test", "forward_flow"+ str(index) + ".png"))   
 
-    return restored_img
+    return restored_img, add_width
 
 if __name__ == '__main__':
 
@@ -159,7 +159,7 @@ if __name__ == '__main__':
     parser.add_argument('--output_path', help='The path to output.', type=str, default='outputs')
 
     parser.add_argument('--net2_path', help='The path to the weight of detection net.', type=str, default='yolo/train/weights/best.pt')
-    parser.add_argument('--net3_path', help='The path to the weight of correction net.', type=str, default='./weights/epoch_102.pt')
+    parser.add_argument('--net3_path', help='The path to the weight of correction net.', type=str, default='./weights/epoch_99.pt')
     args = parser.parse_args()
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -224,22 +224,22 @@ if __name__ == '__main__':
             dim = 64
             num_classes = 1000
 
-            # 定义数据转换 (Define data transformation)
+            # 定义数据转换
             transform = transforms.Compose([
                 transforms.Resize((img_size[0], img_size[1])),
                 transforms.ToTensor(),
             ])
 
-            # 创建数据集和数据加载器 (Create dataset and data loader)
+            # 创建数据集和数据加载器
             dataset = ImageVectorDataset(new_image_path2, transform=transform)
             data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
 
-            # 初始化模型并加载预训练权重 (Initialize the model and load pre-trained weights)
+            # 初始化模型并加载预训练权重
             model = VisionTransformer(img_size, patch_size, num_classes, dim).to(device)
             model.load_state_dict(torch.load(args.net3_path))
             model.eval()
 
-            # 预测 (Prediction)
+            # 预测
             with torch.no_grad():
                 for images, img_names in data_loader:
                     images = images.to(device)
@@ -260,32 +260,45 @@ if __name__ == '__main__':
             corrected_image_path = os.path.join(args.output_path, "corrected_image", str(undistort_image_index) + '_' + str(image_index))
             os.makedirs(corrected_image_path, exist_ok=True)
 
-            #按顺序修复nurd图并保存 (Sequentially correct NURD images and save them)
+            #按顺序修复nurd图并保存
+            add_widths = 0
             for i in range(0,len(full_images)):
                 distort_image_path = os.path.join(args.output_path, "distorted_cropped_image", str(undistort_image_index) + '_' + str(image_index), str(i+1) + ".png")
                 dynamic_vector_path = os.path.join(args.output_path, "vector", str(undistort_image_index) + '_' + str(image_index), str(i+1) + ".csv")
 
                 distort_image = cv2.imread(distort_image_path)
-                restored_img = restore_nurd(distort_image_path, dynamic_vector_path, i)
-
+                restored_img, add_width = restore_nurd(distort_image_path, dynamic_vector_path, i)
+                add_widths += add_width
                 corrected_image_save_path = os.path.join(corrected_image_path, str(i+1) + ".png")
                 cv2.imwrite(corrected_image_save_path, restored_img)
 
-            #拼接为修复后的整张图并保存 (Stitch corrected images into a full image and save it)
+            #拼接为修复后的整张图并保存
+
+            high_width_ratio = 1 + add_widths / 3000
             correct_whole = []
             for i in range(0,len(full_images)):
                 corrected_image_save_path = os.path.join(corrected_image_path, str(i+1) + ".png")
                 corrected_image = cv2.imread(corrected_image_save_path)
 
                 if i == 0:
-                    correct_whole.append(oct_image_whole[:,:nurd_coord[i,0]+1,:])
+                    imgs_seg = oct_image_whole[:,:nurd_coord[i,0]+1,:]
+                    height, width, channels = imgs_seg.shape
+                    imgs_seg = cv2.resize(imgs_seg, (int(width * high_width_ratio), height))
+                    correct_whole.append(imgs_seg)
 
                 if i == len(full_images) - 1:
                     correct_whole.append(corrected_image)
-                    correct_whole.append(oct_image_whole[:,nurd_coord[i,1]:,:])
+                    imgs_seg = oct_image_whole[:,nurd_coord[i,1]:,:]
+                    height, width, channels = imgs_seg.shape
+                    if width > 0:
+                        imgs_seg = cv2.resize(imgs_seg, (int(width * high_width_ratio), height))
+                        correct_whole.append(imgs_seg)
                 else:
                     correct_whole.append(corrected_image)
-                    correct_whole.append(oct_image_whole[:,nurd_coord[i,1]:nurd_coord[i+1,0],:])
+                    imgs_seg = oct_image_whole[:,nurd_coord[i,1]:nurd_coord[i+1,0],:]
+                    height, width, channels = imgs_seg.shape
+                    imgs_seg = cv2.resize(imgs_seg, (int(width * high_width_ratio), height))
+                    correct_whole.append(imgs_seg)
 
             correct_whole = np.concatenate(correct_whole, 1)
 
@@ -294,21 +307,3 @@ if __name__ == '__main__':
 
     print("Done.")
 
-
-# csv_predpath = "results_new/vector/1/8.csv"
-# csv_gtpath = "results_new/vector_gt/1/8.csv"
-
-# data_gt = pd.read_csv(csv_gtpath)
-# gt_y = np.array(data_gt)[:, 0]
-# gt_y = gt_y[gt_y != 0]
-# width = gt_y.shape[0]
-# data_pred = pd.read_csv(csv_predpath)
-# pred_y = np.array(data_pred)[:, 0]
-# pred_y = pred_y[:width]
-
-# x = np.linspace(0,width,width)
-# plt.figure()
-# plt.plot(x, gt_y)
-# plt.plot(x, pred_y)
-# plt.legend(('Ground Truth','Prediction'))
-# plt.savefig(os.path.join("test", "dynamic.png"))
