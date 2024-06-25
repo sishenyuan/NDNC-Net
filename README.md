@@ -110,6 +110,6 @@ to start inference. Results will be saved in the `./outputs`.
 
 ## Demonstration
 
-A synthetic dataset for testing is available for download on [Google Drive](https://drive.google.com/drive/folders/1VD00LOpnTB4Pj4NNuMb9lZRDWIK5FiY2), which includes original distortion-free samples and the corresponding synthetic distorted images. This dataset can be used to compare the OCT images after correction with the original distortion-free images.
+A synthetic dataset for testing is available for download on [Google Drive](https://drive.google.com/drive/folders/1ikwinuNbBuhvJ6eBH4i7pYOrSAVk1y79), which includes original distortion-free samples and the corresponding synthetic distorted images. This dataset can be used to compare the OCT images after correction with the original distortion-free images.
 
 
