@@ -56,7 +56,7 @@ class ImageVectorDataset(Dataset):
     def __getitem__(self, idx):
         img_name = self.image_files[idx]
         img_path = os.path.join(self.image_dir, img_name)
-        image = Image.open(img_path).convert('RGB')
+        image = Image.open(img_path).convert('L')
         if self.transform:
             image = self.transform(image)
 
@@ -71,7 +71,7 @@ class VisionTransformer(nn.Module):
         self.num_patches = (image_size[0] // patch_size[0]) * (image_size[1] // patch_size[1])
         self.dim = dim
 
-        self.patch_embedding = nn.Conv2d(3, dim, kernel_size=(patch_size[0], patch_size[1]),
+        self.patch_embedding = nn.Conv2d(1, dim, kernel_size=(patch_size[0], patch_size[1]),
                                          stride=(patch_size[0], patch_size[1]))
         self.bn1 = nn.BatchNorm2d(dim)
         self.transformer = nn.TransformerEncoder(nn.TransformerEncoderLayer(d_model=dim, nhead=4, dropout=0.1),
