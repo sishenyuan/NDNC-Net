@@ -182,7 +182,7 @@ if __name__ == '__main__':
             nurd_coord = detect_nurd(args.net2_path, oct_image_whole)
             nurd_coord = nurd_coord.astype(np.int64)
 
-            ########  net3
+            ########  NCNet
             image = Image.open(oct_image_whole_path)
             image_width, image_height = image.size
 
@@ -224,22 +224,22 @@ if __name__ == '__main__':
             dim = 64
             num_classes = 1000
 
-            # 定义数据转换
+            # Define data transformations
             transform = transforms.Compose([
                 transforms.Resize((img_size[0], img_size[1])),
                 transforms.ToTensor(),
             ])
 
-            # 创建数据集和数据加载器
+            # Create dataset and data loader
             dataset = ImageVectorDataset(new_image_path2, transform=transform)
             data_loader = DataLoader(dataset, batch_size=batch_size, shuffle=False)
 
-            # 初始化模型并加载预训练权重
+            # Initialize the model and load pre-trained weights
             model = VisionTransformer(img_size, patch_size, num_classes, dim).to(device)
             model.load_state_dict(torch.load(args.net3_path))
             model.eval()
 
-            # 预测
+            # Prediction
             with torch.no_grad():
                 for images, img_names in data_loader:
                     images = images.to(device)
@@ -260,7 +260,7 @@ if __name__ == '__main__':
             corrected_image_path = os.path.join(args.output_path, "corrected_image", str(undistort_image_index) + '_' + str(image_index))
             os.makedirs(corrected_image_path, exist_ok=True)
 
-            #按顺序修复nurd图并保存
+            # Restore NURD images sequentially and save
             add_widths = 0
             for i in range(0,len(full_images)):
                 distort_image_path = os.path.join(args.output_path, "distorted_cropped_image", str(undistort_image_index) + '_' + str(image_index), str(i+1) + ".png")
@@ -272,7 +272,7 @@ if __name__ == '__main__':
                 corrected_image_save_path = os.path.join(corrected_image_path, str(i+1) + ".png")
                 cv2.imwrite(corrected_image_save_path, restored_img)
 
-            #拼接为修复后的整张图并保存
+            # Stitch together the restored images into a complete image and save
 
             high_width_ratio = 1 + add_widths / 3000
             correct_whole = []
