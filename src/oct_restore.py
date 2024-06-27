@@ -12,8 +12,8 @@ import torch.nn.functional as F
 from PIL import Image, ImageOps
 from torchvision import transforms
 
-from yolo.detect import detect_nurd
-from net3inference import ImageVectorDataset, VisionTransformer
+from ndnet.detect import detect_nurd
+from ncnet import ImageVectorDataset, VisionTransformer
 from torch.utils.data import DataLoader
 import time
 import argparse
